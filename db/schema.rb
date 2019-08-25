@@ -10,21 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_25_123405) do
+ActiveRecord::Schema.define(version: 2019_08_25_185316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "favorite_news_items", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "news_item_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["news_item_id"], name: "index_favorite_news_items_on_news_item_id"
-    t.index ["user_id"], name: "index_favorite_news_items_on_user_id"
+  create_table "favorites", force: :cascade do |t|
+    t.string "title"
+    t.string "favorite_post_type"
+    t.bigint "favorite_post_id"
+    t.index ["favorite_post_type", "favorite_post_id"], name: "index_favorites_on_favorite_post_type_and_favorite_post_id"
   end
 
-  create_table "news_items", force: :cascade do |t|
+  create_table "posts", force: :cascade do |t|
     t.string "title"
     t.string "preview"
     t.text "text"
@@ -32,31 +30,23 @@ ActiveRecord::Schema.define(version: 2019_08_25_123405) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_news_items_on_user_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "read_news_items", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "news_item_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["news_item_id"], name: "index_read_news_items_on_news_item_id"
-    t.index ["user_id"], name: "index_read_news_items_on_user_id"
+  create_table "read_posts", force: :cascade do |t|
+    t.string "title"
+    t.string "read_item_type"
+    t.bigint "read_item_id"
+    t.index ["read_item_type", "read_item_id"], name: "index_read_posts_on_read_item_type_and_read_item_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "signature"
-    t.string "password_hash"
-    t.string "password_salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "favorite_news_items", "news_items"
-  add_foreign_key "favorite_news_items", "users"
-  add_foreign_key "news_items", "users"
-  add_foreign_key "read_news_items", "news_items"
-  add_foreign_key "read_news_items", "users"
+  add_foreign_key "posts", "users"
 end
