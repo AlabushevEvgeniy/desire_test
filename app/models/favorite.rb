@@ -1,3 +1,4 @@
 class Favorite < ApplicationRecord
-  belongs_to :favorite_post, polymorphic: true
+  belongs_to :user
+  belongs_to :post
 end

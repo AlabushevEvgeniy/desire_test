@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_25_185316) do
+ActiveRecord::Schema.define(version: 2019_08_26_175130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "favorites", force: :cascade do |t|
-    t.string "title"
-    t.string "favorite_post_type"
-    t.bigint "favorite_post_id"
-    t.index ["favorite_post_type", "favorite_post_id"], name: "index_favorites_on_favorite_post_type_and_favorite_post_id"
+    t.bigint "user_id"
+    t.bigint "post_id"
+    t.index ["post_id"], name: "index_favorites_on_post_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -34,10 +34,10 @@ ActiveRecord::Schema.define(version: 2019_08_25_185316) do
   end
 
   create_table "read_posts", force: :cascade do |t|
-    t.string "title"
-    t.string "read_item_type"
-    t.bigint "read_item_id"
-    t.index ["read_item_type", "read_item_id"], name: "index_read_posts_on_read_item_type_and_read_item_id"
+    t.bigint "user_id"
+    t.bigint "post_id"
+    t.index ["post_id"], name: "index_read_posts_on_post_id"
+    t.index ["user_id"], name: "index_read_posts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -48,5 +48,9 @@ ActiveRecord::Schema.define(version: 2019_08_25_185316) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "favorites", "posts"
+  add_foreign_key "favorites", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "read_posts", "posts"
+  add_foreign_key "read_posts", "users"
 end
