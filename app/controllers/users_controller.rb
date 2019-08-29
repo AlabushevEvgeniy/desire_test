@@ -12,11 +12,11 @@ class UsersController < ApplicationController
   # end
 
   #список новостей автора
-  def posts
-    @users_posts = Post.where(user_id: @user.id)
+  # def posts
+  #   @users_posts = Post.where(user_id: @user.id)
 
-    render json: @users_posts
-  end
+  #   render json: @users_posts
+  # end
 
   def create
     @user = User.new(user_params)
@@ -50,6 +50,7 @@ class UsersController < ApplicationController
         :name,
         :email,
         :signature,
-        :encrypted_password)
+        :encrypted_password
+      )
     end
 end

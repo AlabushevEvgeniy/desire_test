@@ -1,13 +1,13 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @posts = Post.all
 
     render json: @posts
   end
-  #запрошенная новость
+
   def show
     render json: @post
   end
@@ -44,6 +44,7 @@ class PostsController < ApplicationController
         :title,
         :preview,
         :text,
-        :published)
+        :published
+      )
     end
 end
