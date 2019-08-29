@@ -1,11 +1,9 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
-  before_action :authenticate_user!
-  # before_action :set_user, only: [:index]
+  before_action :authenticate_user!, except: [:show]
 
   def index
     @posts = Post.all
-    # @user_posts = Post.where(id: user.id)
 
     render json: @posts
   end
