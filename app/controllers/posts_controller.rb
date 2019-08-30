@@ -5,7 +5,8 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
 
-    render json: @posts
+    # render json: @posts
+    render_resource(@posts)
   end
 
   def show
@@ -15,19 +16,21 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
 
-    if @post.save
-      render json: @post, status: :created, location: @post
-    else
-      render json: @post.errors, status: :unprocessable_entity
-    end
+    # if @post.save
+    #   render json: @post, status: :created, location: @post
+    # else
+    #   render json: @post.errors, status: :unprocessable_entity
+    # end
+    render_resource(@post) if @post.save
   end
 
   def update
-    if @post.update(post_params)
-      render json: @post
-    else
-      render json: @post.errors, status: :unprocessable_entity
-    end
+    # if @post.update(post_params)
+    #   render json: @post
+    # else
+    #   render json: @post.errors, status: :unprocessable_entity
+    # end
+    render_resource(@post) if @post.update(post_params)
   end
 
   def destroy

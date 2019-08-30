@@ -11,12 +11,11 @@ class ApplicationController < ActionController::API
     render json: {
       errors: [
         {
-          status: '400',
-          title: 'Bad Request',
+          status: '422',
+          title: 'Validation Error',
           detail: resource.errors,
-          code: '100'
         }
       ]
-    }, status: :bad_request
+    }, status: :unprocessable_entity
   end
 end
