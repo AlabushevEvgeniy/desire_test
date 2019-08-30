@@ -5,31 +5,20 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
 
-    # render json: @posts
-    render_resource(@posts)
+    render json: @posts
   end
 
   def show
-    render json: @post
+    render_resource(@post)
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = Post.create(post_params)
 
-    # if @post.save
-    #   render json: @post, status: :created, location: @post
-    # else
-    #   render json: @post.errors, status: :unprocessable_entity
-    # end
-    render_resource(@post) if @post.save
+    render_resource(@post)
   end
 
   def update
-    # if @post.update(post_params)
-    #   render json: @post
-    # else
-    #   render json: @post.errors, status: :unprocessable_entity
-    # end
     render_resource(@post) if @post.update(post_params)
   end
 
@@ -38,16 +27,17 @@ class PostsController < ApplicationController
   end
 
   private
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
-    def post_params
-      params.fetch(:post, {}).permit(
-        :title,
-        :preview,
-        :text,
-        :published
-      )
-    end
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def post_params
+    params.fetch(:post, {}).permit(
+      :title,
+      :preview,
+      :text,
+      :published
+    )
+  end
 end
