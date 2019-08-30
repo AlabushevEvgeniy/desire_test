@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :favorites
   has_many :faved_users, through: :favorites, source: :user
   has_many :read_posts

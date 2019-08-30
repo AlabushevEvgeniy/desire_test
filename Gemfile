@@ -13,7 +13,7 @@ gem 'puma', '~> 3.11'
 gem 'devise'
 gem 'devise-jwt'
 
-gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
+gem 'dotenv-rails', '~> 2.1', '>= 2.1.1', groups: [:development, :test]
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
