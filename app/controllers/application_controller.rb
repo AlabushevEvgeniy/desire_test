@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
   # include ActionController::MimeResponds
+  # helper_method :current_user_can_edit?
 
   def render_resource(resource)
     if resource.errors.empty?
@@ -19,5 +20,11 @@ class ApplicationController < ActionController::API
         }
       ]
     }, status: :unprocessable_entity
+  end
+
+  def current_user_can_edit?(model)
+    # Если у модели есть юзер и он залогиненный, пробуем у неё взять .event
+    # Если он есть, проверяем его юзера на равенство current_user.
+    user_signed_in? && model.user == current_user
   end
 end
