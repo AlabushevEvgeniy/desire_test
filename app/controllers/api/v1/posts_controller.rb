@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+class Api::V1::PostsController < Api::V1::BaseController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_post, only: [:show, :update, :destroy]
 
@@ -19,7 +19,9 @@ class PostsController < ApplicationController
   end
 
   def update
-    render_resource(@post) if @post.update(post_params)
+    @post.update(post_params)
+
+    render_resource(@post)
   end
 
   def destroy

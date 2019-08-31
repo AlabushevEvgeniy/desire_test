@@ -1,4 +1,4 @@
-class UserPostsController < ApplicationController
+class Api::V1::UserPostsController < Api::V1::BaseController
   before_action :set_user, only: [:index]
 
   def index
