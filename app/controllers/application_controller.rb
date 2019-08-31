@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  # include ActionController::MimeResponds
+  include ActionController::MimeResponds
 
   def render_resource(resource)
     if resource.errors.empty?
@@ -19,5 +19,9 @@ class ApplicationController < ActionController::API
         }
       ]
     }, status: :unprocessable_entity
+  end
+
+  def current_user_can_edit?(model)
+    user_signed_in? && model.user == current_user
   end
 end
