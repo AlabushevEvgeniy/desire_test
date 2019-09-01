@@ -15,9 +15,9 @@ module Api
       end
 
       def create
-        post = Post.new(post_params)
-        post.user = current_user
-        post.save!
+        @post = Post.new(post_params)
+        @post.user = current_user
+        @post.save!
 
         render_resource(@post)
       end
