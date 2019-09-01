@@ -1,14 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :request do
+describe "GET /api/v1/users", type: :request do
   describe 'request list of all users' do
     it 'return 200' do
       user = User.create(name: 'Test user')
-      get '/api/v1/users'
+      get api_v1_users_path
       expect(response).to be_successful
       expect(response.body).to include('Test user')
     end
   end
-
-
 end

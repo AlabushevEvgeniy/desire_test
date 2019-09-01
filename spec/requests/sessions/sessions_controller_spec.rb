@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe 'POST /api/v1/users/sign_in', type: :request do
+describe 'POST /api/v1/users/sign_in', type: :request do
   let(:user) { User.create!(email: 'foo@bar.com', password: '123123') }
-  let(:url) { '/api/v1/users/sign_in' }
+  let(:url) { user_session_path }
   let(:params) do
     {
       user: {
@@ -13,9 +13,7 @@ RSpec.describe 'POST /api/v1/users/sign_in', type: :request do
   end
 
   context 'when params are correct' do
-    before do
-      post url, params: params
-    end
+    before { post url, params: params }
 
     it 'returns 200' do
       expect(response).to have_http_status(200)
