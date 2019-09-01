@@ -7,7 +7,9 @@ RSpec.describe 'POST /api/v1/posts', type: :request do
     {
       post: {
         title: model_post.title,
+        preview: model_post.preview,
         text: model_post.text,
+        published: true,
         user_id: user.id
       }
     }
@@ -50,6 +52,7 @@ RSpec.describe 'UPDATE /api/v1/posts/:id', type: :request do
     {
       post: {
         title: model_post.title,
+        preview: model_post.preview,
         text: model_post.text,
         user_id: user.id
       }
@@ -61,6 +64,7 @@ RSpec.describe 'UPDATE /api/v1/posts/:id', type: :request do
       post: {
         id: model_post.id,
         title: 'new_title',
+        preview: model_post.preview,
         text: 'new_text',
         user_id: user.id
       }
