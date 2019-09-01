@@ -34,12 +34,3 @@ RSpec.describe 'POST /api/v1/users/sign_in', type: :request do
     end
   end
 end
-
-RSpec.describe 'DELETE /api/v1/users/sign_out', type: :request do
-  let(:url) { '/api/v1/users/sign_out' }
-
-  it 'returns 204, no content' do
-    delete url
-    expect(response).to have_http_status(204)
-  end
-end
