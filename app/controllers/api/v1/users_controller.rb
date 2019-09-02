@@ -1,6 +1,7 @@
 module Api
   module V1
     class UsersController < Api::V1::BaseController
+      before_action :authenticate_user!, only: [:favorites]
       before_action :set_user, only: [:show]
 
       def index
@@ -10,8 +11,13 @@ module Api
       end
 
       def favorites
-        # binding.pry
-        Post.where(user: params[:user_id]).where('favorite_posts IS NOT ? AND favorite_posts != ?', nil, '')
+        @favorites = Favorite.where(user: params[:user_id])
+        @posts = []
+        @favorites.each do |fav|
+          @posts << fav.post
+        end
+
+        render json: @posts
       end
 
       private

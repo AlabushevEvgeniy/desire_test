@@ -37,7 +37,7 @@ module Api
         # binding.pry
         post = Post.find(params[:post_id])
         @fav_posts = current_user.favorite_posts << post
-        # render_resource(@fav_posts)
+        render json: @fav_posts
       end
 
       private
