@@ -11,13 +11,24 @@ module Api
       end
 
       def favorites
-        @favorites = Favorite.where(user: params[:user_id])
-        @posts = []
-        @favorites.each do |fav|
-          @posts << fav.post
-        end
+        # @favorites = Favorite.where(user: params[:user_id])
+        # @posts = []
+        # @favorites.each do |fav|
+        #   @posts << fav.post
+        # end
+        @favorite_posts = Post.includes(:favorites).where('favorites.user_id': current_user.id)
 
-        render json: @posts
+        render json: @favorite_posts
+      end
+
+      def unread
+        # Post.where('read_posts.user_id': current_user)
+        read_posts = Post.includes(:read_posts).where('read_posts.user_id': current_user.id)
+        # posts = Post.where("user_id != ?", current_user.id)
+        alien_posts = Post.all - Post.where(user_id: current_user.id)
+        unread = alien_posts - read_posts
+
+        render json: unread
       end
 
       private

@@ -11,7 +11,10 @@ module Api
       end
 
       def show
-        render_resource(@post)
+        post = Post.find(params[:post_id])
+        current_user.read_posts << post
+
+        render_resource(post)
       end
 
       def create
