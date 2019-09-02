@@ -1,7 +1,7 @@
 module Api
   module V1
     class UsersController < Api::V1::BaseController
-      before_action :set_user, only: [:posts, :show]
+      before_action :set_user, only: [:show, :favorites]
 
       def index
         @users = User.all
@@ -10,7 +10,7 @@ module Api
       end
 
       def favorites
-        Post.where(user: @post.user).where('favorite_posts IS NOT ? AND favorite_posts != ?', nil, '')
+        Post.where(user: params[:user_id]).where('favorite_posts IS NOT ? AND favorite_posts != ?', nil, '')
       end
 
       private
