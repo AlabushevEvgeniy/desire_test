@@ -32,6 +32,12 @@ module Api
         @post.destroy if current_user_can_edit?(@post)
       end
 
+      def add_to_favorites
+        # binding.pry
+        @fav_posts = current_user.favorite_posts << @post
+        render_resource(@fav_posts)
+      end
+
       private
 
       def set_post

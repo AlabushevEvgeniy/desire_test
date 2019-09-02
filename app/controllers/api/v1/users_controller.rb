@@ -9,6 +9,10 @@ module Api
         render json: @users
       end
 
+      def favorites
+        Post.where(user: @post.user).where('favorite_posts IS NOT ? AND favorite_posts != ?', nil, '')
+      end
+
       private
 
       def set_user
