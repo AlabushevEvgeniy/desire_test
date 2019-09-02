@@ -18,14 +18,14 @@ describe 'GET /api/v1/users/:id/favorites', type: :request do
 
   context 'when user authenticated' do
     it 'returns 200' do
-      get '/api/v1/users/3/favorites', headers: { 'Authorization' => auth_header, "CONTENT_TYPE" => "application/json" }
+      get "/api/v1/users/#{user.id}/favorites", headers: { 'Authorization' => auth_header, "CONTENT_TYPE" => "application/json" }
       expect(response).to have_http_status(200)
     end
   end
 
   context 'when user not authenticated' do
     it 'returns unathorized status' do
-      get api_v1_posts_path
+      get "/api/v1/users/#{user.id}/favorites"
       expect(response).to have_http_status(401)
     end
   end
@@ -50,14 +50,14 @@ describe 'POST /api/v1/posts/:id/add_to_favorites', type: :request do
 
   context 'when user authenticated' do
     it 'returns 200' do
-      post "/api/v1/post/#{model_post.id}/add_to_favorites", headers: { 'Authorization' => auth_header, "CONTENT_TYPE" => "application/json" }
+      post "/api/v1/posts/#{model_post.id}/add_to_favorites", headers: { 'Authorization' => auth_header, "CONTENT_TYPE" => "application/json" }
       expect(response).to have_http_status(200)
     end
   end
 
   context 'when user not authenticated' do
     it 'returns unathorized status' do
-      post api_v1_post_add_to_favorites(model_post)
+      post "/api/v1/posts/#{model_post.id}/add_to_favorites"
       expect(response).to have_http_status(401)
     end
   end

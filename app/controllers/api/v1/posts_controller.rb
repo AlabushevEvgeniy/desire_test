@@ -11,7 +11,6 @@ module Api
       end
 
       def show
-        binding.pry
         render_resource(@post)
       end
 
@@ -34,9 +33,9 @@ module Api
       end
 
       def add_to_favorites
-        # binding.pry
         post = Post.find(params[:post_id])
         @fav_posts = current_user.favorite_posts << post
+
         render json: @fav_posts
       end
 
