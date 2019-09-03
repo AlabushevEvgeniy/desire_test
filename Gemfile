@@ -12,6 +12,7 @@ gem 'puma', '~> 3.11'
 
 gem 'devise'
 gem 'devise-jwt'
+gem 'seed_dump'
 
 gem 'dotenv-rails', '~> 2.1', '>= 2.1.1', groups: [:development, :test]
 
