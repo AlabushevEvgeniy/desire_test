@@ -11,6 +11,9 @@ module Api
       end
 
       def show
+        # post = Post.find(params[:post_id])
+        current_user.looked_posts << @post if current_user
+
         render_resource(@post)
       end
 
@@ -30,6 +33,13 @@ module Api
 
       def destroy
         @post.destroy if current_user_can_edit?(@post)
+      end
+
+      def add_to_favorites
+        post = Post.find(params[:post_id])
+        @fav_posts = current_user.favorite_posts << post
+
+        render json: @fav_posts
       end
 
       private
