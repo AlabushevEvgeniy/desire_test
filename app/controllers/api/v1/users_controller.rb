@@ -1,7 +1,7 @@
 module Api
   module V1
     class UsersController < Api::V1::BaseController
-      before_action :authenticate_user!, only: [:favorites]
+      before_action :authenticate_user!, only: [:favorites, :unread]
       before_action :set_user, only: [:show]
 
       def index
@@ -22,9 +22,7 @@ module Api
       end
 
       def unread
-        # Post.where('read_posts.user_id': current_user)
         read_posts = Post.includes(:read_posts).where('read_posts.user_id': current_user.id)
-        # posts = Post.where("user_id != ?", current_user.id)
         alien_posts = Post.all - Post.where(user_id: current_user.id)
         unread = alien_posts - read_posts
 
