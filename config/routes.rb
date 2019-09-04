@@ -6,10 +6,10 @@ Rails.application.routes.draw do
       resources :posts do
         post 'add_to_favorites', to: 'posts#add_to_favorites'
       end
-      resources :user_posts, only: [:index]
       resources :users, only: [:index] do
         get 'favorites', to: 'users#favorites'
         get 'unread', to: 'users#unread'
+        get 'posts', to: 'users#posts'
       end
     end
   end

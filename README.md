@@ -5,12 +5,16 @@
   * **list of all authors**
 
         GET "/api/v1/users"
+
+  * **chosen author's posts**
   
-  * **favorites of current author**
+        GET "api/v1/users/:id/posts"      
+  
+  * **favorites of chosen author**
 
         GET "/api/av1/users/:id/favorites"
   
-  * **unread posts of current author**
+  * **unread posts of chosen author**
   
         GET "api/v1/users/:id/unread"
   
