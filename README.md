@@ -1,24 +1,41 @@
-# README
+# URL's for testing Api app 'desire-test'
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Authors group
 
-Things you may want to cover:
+  * **list of all authors**
 
-* Ruby version
+        GET "/api/v1/users"
+  
+  * **favorites of chosen author**
 
-* System dependencies
+        GET "/api/av1/users/:id/favorites"
+  
+  * **unread posts of chosen author**
+  
+        GET "api/v1/users/:id/unread"
+  
+## Posts group
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  * **list of all posts**
+  
+        GET "/api/v1/posts"
+  
+  * **show chosen post**
+  
+        GET "api/v1/posts/:id"
+  
+  * **create post**
+  
+        POST "api/v1/posts"
+  
+  * **update chosen posts**
+  
+        PUT "/api/v1/posts/:id"
+  
+  * **delete chosen post**
+  
+        DELETE "/api/v1/posts/:id"
+  
+  * **add chosen post to current user's favorites**
+  
+        "api/v1/posts/:id/add_to_favorites"
