@@ -12,7 +12,7 @@
   
   * **favorites of chosen author**
 
-        GET "/api/av1/users/:id/favorites"
+        GET "/api/v1/users/:id/favorites"
   
   * **unread posts of chosen author**
   
