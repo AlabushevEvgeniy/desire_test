@@ -1,4 +1,4 @@
-# URL's for testing Api app 'desire-test'
+# URL's for test Api app 'desire-test'
 
 ## Authors group
 
@@ -6,11 +6,11 @@
 
         GET "/api/v1/users"
   
-  * **favorites of chosen author**
+  * **favorites of current author**
 
         GET "/api/av1/users/:id/favorites"
   
-  * **unread posts of chosen author**
+  * **unread posts of current author**
   
         GET "api/v1/users/:id/unread"
   
@@ -38,4 +38,4 @@
   
   * **add chosen post to current user's favorites**
   
-        "api/v1/posts/:id/add_to_favorites"
+        POST "api/v1/posts/:id/add_to_favorites"
